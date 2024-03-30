@@ -42,7 +42,7 @@ app.use(cors());
 // app.use(limiter)
 app.use(express.json());
 mongoose
-  .connect(process.env.CONNECTION_STRING)
+  .connect(process.env.ATLAS_STRING)
   .then(() => {
     log("Connected Successfully to the database");
   })
