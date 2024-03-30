@@ -5,6 +5,8 @@ const { default: mongoose } = require("mongoose");
 const cors = require("cors");
 const RateLimit = require("express-rate-limit");
 const MongoStore = require("rate-limit-mongo");
+const path = require("node:path");
+const { fileURLToPath } = require("node:url");
 
 
 const authMiddleware = require("./middlewares/auth.js");
@@ -19,6 +21,10 @@ const brandRouter = require("./routes/brand.js");
 const categoryRouter = require("./routes/category.js");
 
 dotenv.config();
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT;
@@ -59,7 +65,7 @@ app.use("/api/v1/blog", blogRouter);
 app.use("/api/v1/brand", brandRouter);
 app.use("/api/v1/category", categoryRouter);
 app.use("/", (req, res)=> {
-  res.redirect("./index.html");
+  res.sendFile(__dirname + "/index.html");
 })
 
 // Handling all other routes
