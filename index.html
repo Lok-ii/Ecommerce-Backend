@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="rzp-button1">Pay</button>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "rzp_test_3qIwPp4uTwTqdd",
+            "amount": 999000,
+            "currency": "INR",
+            "name": "Lokesh Kataria",
+            "description": "Donation",
+            "image": "https://www.razorpay.com/img/rzp-logo.svg",
+            "order_id": "order_NnsZPB2JU15VTd",
+            handler: function(response){
+                console.log(response);
+                alert(response.razorpay_payment_id);
+                alert(response.razorpay_order_id);
+                alert(response.razorpay_signature);
+            },
+            notes:{
+                address: "Razorpay Corporate Office"
+            },
+            theme: {
+                color: "#3399cc"
+            }
+        };
+        
+        document.querySelector("#rzp-button1").addEventListener("click", () => {
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        })
+    </script>
+</body>
+</html>
