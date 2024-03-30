@@ -58,6 +58,9 @@ app.use("/api/v1/order",authMiddleware(["buyer", "admin"]), orderRouter);
 app.use("/api/v1/blog", blogRouter);
 app.use("/api/v1/brand", brandRouter);
 app.use("/api/v1/category", categoryRouter);
+app.use("/", (req, res)=> {
+  res.redirect("./index.html");
+})
 
 // Handling all other routes
 app.all("*", (req, res) => {
